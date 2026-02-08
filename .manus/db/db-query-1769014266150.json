@@ -1,0 +1,9 @@
+{
+  "query": "UPDATE posts SET isPublished = true WHERE status = 'published';\nUPDATE caravan_routes SET isPublished = true WHERE status = 'published';",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway03.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2VxtrGUUwrxfYgC.root --database nLJWkL5mHkcK5pxHDQdQSw --execute UPDATE posts SET isPublished = true WHERE status = 'published';\nUPDATE caravan_routes SET isPublished = true WHERE status = 'published';",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1760
+}

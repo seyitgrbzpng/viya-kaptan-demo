@@ -1,0 +1,161 @@
+{
+  "hero": {
+    "title": "Denizlerin Büyüsünü Keşfet",
+    "subtitle": "Yelkenlerle açık denizlerde özgürlüğü yaşayın, karavan maceraları ile kıyı rotalarını keşfedin",
+    "backgroundImage": "https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=1920&q=80",
+    "primaryButtonText": "Denizcilik Rehberi",
+    "primaryButtonLink": "/blog",
+    "secondaryButtonText": "Karavan Rehberi",
+    "secondaryButtonLink": "/karavan"
+  },
+  "features": [
+    {
+      "title": "Yelkenli Maceraları",
+      "description": "Açık denizlerde yelken açmanın heyecanı, rüzgarla dans eden teknelerin büyülü dünyası",
+      "icon": "ri-sailboat-line",
+      "link": "/blog",
+      "sortOrder": 1
+    },
+    {
+      "title": "Karavan Rotaları",
+      "description": "Kıyı şeridindeki en güzel karavan kampları, deniz manzaralı konaklama noktaları",
+      "icon": "ri-caravan-line",
+      "link": "/karavan",
+      "sortOrder": 2
+    },
+    {
+      "title": "Seyir Rehberleri",
+      "description": "Denizcilik teknikleri, navigasyon ipuçları ve güvenli seyir için pratik bilgiler",
+      "icon": "ri-compass-3-line",
+      "link": "/blog",
+      "sortOrder": 3
+    },
+    {
+      "title": "Marina Rehberleri",
+      "description": "Türkiye'nin en iyi marinaları, konaklama ve servis bilgileri",
+      "icon": "ri-anchor-line",
+      "link": "/blog",
+      "sortOrder": 4
+    }
+  ],
+  "categories": [
+    {
+      "name": "Denizcilik",
+      "slug": "denizcilik",
+      "description": "Denizcilik dünyasından haberler, rehberler ve ipuçları",
+      "icon": "ri-ship-line",
+      "color": "#0891b2"
+    },
+    {
+      "name": "Karavan",
+      "slug": "karavan",
+      "description": "Karavan rotaları, kamp alanları ve seyahat rehberleri",
+      "icon": "ri-caravan-line",
+      "color": "#059669"
+    },
+    {
+      "name": "Navigasyon",
+      "slug": "navigasyon",
+      "description": "Navigasyon teknikleri ve ekipman rehberleri",
+      "icon": "ri-compass-3-line",
+      "color": "#7c3aed"
+    },
+    {
+      "name": "Marina",
+      "slug": "marina",
+      "description": "Marina rehberleri ve konaklama bilgileri",
+      "icon": "ri-anchor-line",
+      "color": "#dc2626"
+    }
+  ],
+  "posts": [
+    {
+      "title": "Gün Batımında Yelken Açmak",
+      "slug": "gun-batiminda-yelken-acmak",
+      "excerpt": "Akşam saatlerinde denize açılmanın büyüsü ve unutulmaz anlar yaşamanın sırları...",
+      "content": "<h2>Gün Batımının Büyüsü</h2><p>Denizde gün batımı izlemek, yaşamın en büyülü anlarından biridir. Güneşin ufukta kaybolurken gökyüzünü turuncu, pembe ve mor tonlarına boyaması, yelkenli bir teknede izlendiğinde bambaşka bir anlam kazanır.</p><h2>Hazırlık</h2><p>Gün batımı yelken seferi için öğleden sonra geç saatlerde yola çıkmak idealdir. Rüzgar koşullarını kontrol edin ve güvenli bir rota planlayın. Yanınıza sıcak içecekler ve hafif atıştırmalıklar almayı unutmayın.</p><h2>En İyi Noktalar</h2><p>Türkiye'nin Ege ve Akdeniz kıyıları, gün batımı yelken seferleri için mükemmel fırsatlar sunar. Bodrum, Marmaris ve Fethiye körfezleri özellikle tavsiye edilir.</p><h2>Fotoğraf İpuçları</h2><p>Gün batımı fotoğrafları için altın saat olarak bilinen güneş batmadan önceki son bir saati değerlendirin. Yelkenlerin siluetini güneşin önünde yakalamak dramatik kareler oluşturur.</p>",
+      "featuredImage": "https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=800&q=80",
+      "categorySlug": "denizcilik",
+      "publishedAt": "2024-03-15",
+      "readTime": 5,
+      "authorName": "Kaptan Mehmet",
+      "authorTitle": "Denizcilik Uzmanı"
+    },
+    {
+      "title": "Deniz Kenarında Karavan Kampı",
+      "slug": "deniz-kenarinda-karavan-kampi",
+      "excerpt": "Türkiye'nin en güzel kıyı şeridindeki karavan kampları ve konaklama ipuçları...",
+      "content": "<h2>Deniz Kenarında Karavan Deneyimi</h2><p>Karavan ile seyahat etmek, özgürlüğün en saf halidir. Deniz kenarında uyandığınızda, dalgaların sesini dinleyerek güne başlamak paha biçilemez bir deneyimdir.</p><h2>En İyi Kamp Alanları</h2><p>Türkiye'nin Akdeniz ve Ege kıyılarında birçok mükemmel karavan kamp alanı bulunmaktadır. Olympos, Çıralı, Patara ve Datça yarımadası özellikle popüler destinasyonlardır.</p><h2>Dikkat Edilmesi Gerekenler</h2><ul><li>Kamp alanı rezervasyonlarını önceden yapın</li><li>Su ve elektrik bağlantılarını kontrol edin</li><li>Yerel yönetmeliklere uyun</li><li>Çevreye saygılı olun</li></ul><h2>Sezon Önerileri</h2><p>Mayıs-Haziran ve Eylül-Ekim ayları, deniz kenarında karavan kampı için ideal dönemlerdir. Yaz aylarında kalabalık olabilir ve sıcaklıklar yükselebilir.</p>",
+      "featuredImage": "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=800&q=80",
+      "categorySlug": "karavan",
+      "publishedAt": "2024-03-12",
+      "readTime": 7,
+      "authorName": "Ayşe Yılmaz",
+      "authorTitle": "Karavan Gezgini"
+    },
+    {
+      "title": "Denizcilik Navigasyon Temelleri",
+      "slug": "denizcilik-navigasyon-temelleri",
+      "excerpt": "Güvenli seyir için bilmeniz gereken navigasyon teknikleri ve ekipmanları...",
+      "content": "<h2>Navigasyonun Önemi</h2><p>Denizde güvenli seyir için navigasyon bilgisi hayati önem taşır. Modern teknoloji yardımcı olsa da, temel navigasyon becerilerini bilmek her denizci için zorunludur.</p><h2>Temel Ekipmanlar</h2><ul><li><strong>Pusula:</strong> En temel navigasyon aracı</li><li><strong>Haritalar:</strong> Deniz haritaları ve güncellemeleri</li><li><strong>GPS:</strong> Konum belirleme sistemi</li><li><strong>VHF Telsiz:</strong> İletişim için</li></ul><h2>Rota Planlama</h2><p>Sefere çıkmadan önce rotanızı detaylı planlayın. Hava durumunu kontrol edin, alternatif limanları belirleyin ve yakıt hesaplamalarınızı yapın.</p><h2>Güvenlik İpuçları</h2><p>Her zaman bir seyir planı bırakın, can yeleklerini hazır bulundurun ve acil durum prosedürlerini bilin.</p>",
+      "featuredImage": "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=800&q=80",
+      "categorySlug": "navigasyon",
+      "publishedAt": "2024-03-08",
+      "readTime": 8,
+      "authorName": "Kaptan Ali",
+      "authorTitle": "Navigasyon Eğitmeni"
+    }
+  ],
+  "caravanRoutes": [
+    {
+      "name": "Ege Kıyı Rotası",
+      "slug": "ege-kiyi-rotasi",
+      "description": "İzmir'den Bodrum'a uzanan muhteşem Ege kıyı rotası",
+      "content": "<h2>Rota Hakkında</h2><p>Ege kıyı rotası, Türkiye'nin en güzel karavan rotalarından biridir. İzmir'den başlayarak Bodrum'a kadar uzanan bu rota, antik kentler, muhteşem koylar ve lezzetli Ege mutfağı ile dolu bir deneyim sunar.</p><h2>Önemli Duraklar</h2><ul><li>Çeşme - Alaçatı</li><li>Efes Antik Kenti</li><li>Kuşadası</li><li>Didim</li><li>Bodrum</li></ul>",
+      "featuredImage": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
+      "distance": "350 km",
+      "duration": "5-7 gün",
+      "difficulty": "easy",
+      "locations": ["İzmir", "Çeşme", "Kuşadası", "Didim", "Bodrum"],
+      "highlights": ["Antik kentler", "Muhteşem koylar", "Ege mutfağı", "Rüzgar sörfü"],
+      "tips": ["Yaz aylarında erken rezervasyon yapın", "Alaçatı'da rüzgarlı günlere hazırlıklı olun", "Yerel pazarları keşfedin"]
+    },
+    {
+      "name": "Akdeniz Sahil Rotası",
+      "slug": "akdeniz-sahil-rotasi",
+      "description": "Antalya'dan Fethiye'ye Türkiye'nin turkuaz kıyıları",
+      "content": "<h2>Turkuaz Cennet</h2><p>Akdeniz sahil rotası, Türkiye'nin en ünlü turkuaz kıyılarını keşfetmenizi sağlar. Antalya'dan başlayıp Fethiye'ye uzanan bu rota, tarihi kalıntılar, doğal güzellikler ve muhteşem plajlarla doludur.</p><h2>Görülmesi Gereken Yerler</h2><ul><li>Olympos ve Çıralı</li><li>Kaş</li><li>Kalkan</li><li>Patara Plajı</li><li>Ölüdeniz</li></ul>",
+      "featuredImage": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+      "distance": "280 km",
+      "duration": "7-10 gün",
+      "difficulty": "medium",
+      "locations": ["Antalya", "Olympos", "Kaş", "Kalkan", "Fethiye"],
+      "highlights": ["Turkuaz deniz", "Antik Likya yolu", "Paragliding", "Kaplumbağa kumsalları"],
+      "tips": ["Olympos'ta ağaç evlerde konaklayın", "Kaş'ta dalış yapın", "Ölüdeniz'de yamaç paraşütü deneyin"]
+    },
+    {
+      "name": "Karadeniz Yayla Rotası",
+      "slug": "karadeniz-yayla-rotasi",
+      "description": "Trabzon'dan Rize'ye yeşilin bin bir tonu",
+      "content": "<h2>Yeşil Cennet</h2><p>Karadeniz yayla rotası, Türkiye'nin en yeşil bölgesini keşfetmenizi sağlar. Trabzon'dan başlayıp Rize'ye uzanan bu rota, yaylalar, çay bahçeleri ve muhteşem doğa manzaralarıyla doludur.</p>",
+      "featuredImage": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+      "distance": "200 km",
+      "duration": "4-5 gün",
+      "difficulty": "hard",
+      "locations": ["Trabzon", "Uzungöl", "Ayder", "Rize"],
+      "highlights": ["Yaylalar", "Çay bahçeleri", "Şelaleler", "Yerel lezzetler"],
+      "tips": ["Yağmurluk getirin", "Yaylalarda erken rezervasyon yapın", "Yerel çayı tadın"]
+    }
+  ],
+  "settings": {
+    "site_title": "Viya Kaptan",
+    "site_description": "Denizlerin büyüsünü keşfedin, yelkenli maceraları yaşayın",
+    "site_keywords": "denizcilik, karavan, yelken, gezi, macera, türkiye",
+    "contact_email": "info@viyakaptan.com",
+    "contact_address": "Kalamış Marina Fenerbahçe, Kadıköy/İstanbul, Türkiye",
+    "social_instagram": "https://instagram.com/viyakaptan",
+    "social_youtube": "https://youtube.com/@viyakaptan",
+    "footer_text": "Denizlerin büyüsünü keşfedin, yelkenli maceraları yaşayın",
+    "footer_copyright": "©2025 Viya Kaptan. Tüm hakları saklıdır."
+  }
+}
