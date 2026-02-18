@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: viya-kaptan-backend
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: pnpm install && pnpm build
+    startCommand: pnpm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: OWNER_OPEN_ID
+        value: admin@localhost.dev
+      - key: CORS_ORIGINS
+        sync: false
