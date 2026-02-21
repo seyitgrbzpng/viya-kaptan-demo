@@ -2,36 +2,11 @@ import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useMockData } from "@/lib/useMockData";
-import { useEffect, useState } from "react";
 
 export default function Home() {
-  const mockData = useMockData();
-  const [useMock, setUseMock] = useState(mockData.useMock);
+  const { data: homepageData, isLoading } = trpc.homepage.getData.useQuery();
 
-  const { data: homepageData, isLoading, error } = trpc.homepage.getData.useQuery(undefined, {
-    enabled: !useMock, // Don't fetch if using mock data
-    retry: false,
-  });
-
-  // If database error occurs, switch to mock data
-  useEffect(() => {
-    if (error && !useMock) {
-      console.warn('[Mock Data] Database unavailable, using mock data');
-      setUseMock(true);
-    }
-  }, [error, useMock]);
-
-  // Use mock data or real data
-  const dataSource = useMock ? {
-    hero: mockData.mockHeroSection,
-    features: mockData.mockFeatureCards,
-    posts: mockData.mockPosts.slice(0, 3),
-    routes: mockData.mockCaravanRoutes,
-    settings: null,
-  } : homepageData;
-
-  if (isLoading && !useMock) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
@@ -42,17 +17,10 @@ export default function Home() {
     );
   }
 
-  const { hero, features, posts, routes, settings } = dataSource || {};
+  const { hero, features, posts, routes, settings } = homepageData || {};
 
   return (
     <div className="min-h-screen bg-white">
-      {useMock && (
-        <div className="bg-yellow-50 border-b border-yellow-200 px-4 py-2 text-center text-sm text-yellow-800">
-          <i className="ri-information-line mr-1"></i>
-          <strong>Mock Data Modu:</strong> Database bağlantısı yok, örnek veriler gösteriliyor.
-        </div>
-      )}
-
       <Header settings={settings} />
 
       {/* Hero Section */}
@@ -240,8 +208,8 @@ export default function Home() {
                         />
                         {route.difficulty && (
                           <span className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${route.difficulty === 'easy' ? 'bg-green-500 text-white' :
-                              route.difficulty === 'hard' ? 'bg-red-500 text-white' :
-                                'bg-yellow-500 text-white'
+                            route.difficulty === 'hard' ? 'bg-red-500 text-white' :
+                              'bg-yellow-500 text-white'
                             }`}>
                             {route.difficulty === 'easy' ? 'Kolay' : route.difficulty === 'hard' ? 'Zor' : 'Orta'}
                           </span>

@@ -1,6 +1,5 @@
 import { Link, useLocation } from "wouter";
 import { useState } from "react";
-import { useAuth } from "@/_core/hooks/useAuth";
 
 interface HeaderProps {
   settings?: Record<string, string>;
@@ -9,7 +8,6 @@ interface HeaderProps {
 export default function Header({ settings }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [location] = useLocation();
-  const { user } = useAuth();
 
   const navItems = [
     { label: "Ana Sayfa", path: "/" },
@@ -39,11 +37,10 @@ export default function Header({ settings }: HeaderProps) {
               <Link
                 key={item.path}
                 href={item.path}
-                className={`text-sm font-medium transition-colors ${
-                  isActive(item.path)
-                    ? "text-primary"
-                    : "text-gray-700 hover:text-primary"
-                }`}
+                className={`text-sm font-medium transition-colors ${isActive(item.path)
+                  ? "text-primary"
+                  : "text-gray-700 hover:text-primary"
+                  }`}
               >
                 {item.label}
               </Link>
@@ -53,9 +50,9 @@ export default function Header({ settings }: HeaderProps) {
           {/* Social Links & Admin */}
           <div className="hidden md:flex items-center gap-4">
             {settings?.social_instagram && (
-              <a 
-                href={settings.social_instagram} 
-                target="_blank" 
+              <a
+                href={settings.social_instagram}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-primary transition-colors"
               >
@@ -63,22 +60,21 @@ export default function Header({ settings }: HeaderProps) {
               </a>
             )}
             {settings?.social_youtube && (
-              <a 
-                href={settings.social_youtube} 
-                target="_blank" 
+              <a
+                href={settings.social_youtube}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-600 hover:text-primary transition-colors"
               >
                 <i className="ri-youtube-line text-xl"></i>
               </a>
             )}
-            {user?.role === 'admin' && (
-              <Link href="/admin">
-                <button className="px-4 py-2 bg-primary text-white text-sm rounded-full hover:bg-primary/90 transition-colors">
-                  Admin
-                </button>
-              </Link>
-            )}
+            <Link href="/admin">
+              <button className="px-4 py-2 bg-primary text-white text-sm rounded-full hover:bg-primary/90 transition-colors flex items-center gap-1">
+                <i className="ri-admin-line"></i>
+                Yönetici Girişi
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -99,26 +95,26 @@ export default function Header({ settings }: HeaderProps) {
                   key={item.path}
                   href={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`text-sm font-medium transition-colors ${
-                    isActive(item.path)
-                      ? "text-primary"
-                      : "text-gray-700 hover:text-primary"
-                  }`}
+                  className={`text-sm font-medium transition-colors ${isActive(item.path)
+                    ? "text-primary"
+                    : "text-gray-700 hover:text-primary"
+                    }`}
                 >
                   {item.label}
                 </Link>
               ))}
-              {user?.role === 'admin' && (
-                <Link href="/admin" onClick={() => setIsMenuOpen(false)}>
-                  <span className="text-sm font-medium text-primary">Admin Panel</span>
-                </Link>
-              )}
+              <Link href="/admin" onClick={() => setIsMenuOpen(false)}>
+                <span className="text-sm font-medium text-primary flex items-center gap-1">
+                  <i className="ri-admin-line"></i>
+                  Yönetici Girişi
+                </span>
+              </Link>
             </nav>
             <div className="flex items-center gap-4 mt-4 pt-4 border-t">
               {settings?.social_instagram && (
-                <a 
-                  href={settings.social_instagram} 
-                  target="_blank" 
+                <a
+                  href={settings.social_instagram}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-primary transition-colors"
                 >
@@ -126,9 +122,9 @@ export default function Header({ settings }: HeaderProps) {
                 </a>
               )}
               {settings?.social_youtube && (
-                <a 
-                  href={settings.social_youtube} 
-                  target="_blank" 
+                <a
+                  href={settings.social_youtube}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-primary transition-colors"
                 >

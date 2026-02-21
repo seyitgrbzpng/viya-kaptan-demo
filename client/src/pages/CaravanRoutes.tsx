@@ -2,37 +2,17 @@ import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useMockData } from "@/lib/useMockData";
-import { useEffect, useState } from "react";
 
 export default function CaravanRoutes() {
-  const mockData = useMockData();
-  const [useMock, setUseMock] = useState(mockData.useMock);
-
-  const { data: routes, isLoading, error } = trpc.caravanRoutes.list.useQuery({ publishedOnly: true }, {
-    enabled: !useMock,
-    retry: false,
-  });
-  const { data: settings } = trpc.siteSettings.list.useQuery(undefined, {
-    enabled: !useMock,
-    retry: false,
-  });
-
-  // Switch to mock if database error
-  useEffect(() => {
-    if (error && !useMock) {
-      console.warn('[Mock Data] Database unavailable, using mock data');
-      setUseMock(true);
-    }
-  }, [error, useMock]);
+  const { data: routes, isLoading } = trpc.caravanRoutes.list.useQuery({ publishedOnly: true });
+  const { data: settings } = trpc.siteSettings.list.useQuery();
 
   const settingsMap: Record<string, string> = {};
   settings?.forEach(s => {
     if (s.value) settingsMap[s.key] = s.value;
   });
 
-  // Use mock or real data
-  const dataSource = useMock ? mockData.mockCaravanRoutes : routes;
+  const dataSource = routes;
 
   const difficultyLabels = {
     easy: "Kolay",
@@ -40,7 +20,7 @@ export default function CaravanRoutes() {
     hard: "Zor"
   };
 
-  if (isLoading && !useMock) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -50,13 +30,6 @@ export default function CaravanRoutes() {
 
   return (
     <div className="min-h-screen bg-white">
-      {useMock && (
-        <div className="bg-yellow-50 border-b border-yellow-200 px-4 py-2 text-center text-sm text-yellow-800">
-          <i className="ri-information-line mr-1"></i>
-          <strong>Mock Data Modu:</strong> Database bağlantısı yok, örnek veriler gösteriliyor.
-        </div>
-      )}
-
       <Header settings={settingsMap} />
 
       {/* Hero */}
@@ -115,8 +88,8 @@ export default function CaravanRoutes() {
                         />
                         {route.difficulty && (
                           <span className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${route.difficulty === 'easy' ? 'bg-green-500 text-white' :
-                              route.difficulty === 'hard' ? 'bg-red-500 text-white' :
-                                'bg-yellow-500 text-white'
+                            route.difficulty === 'hard' ? 'bg-red-500 text-white' :
+                              'bg-yellow-500 text-white'
                             }`}>
                             {difficultyLabels[route.difficulty]}
                           </span>
