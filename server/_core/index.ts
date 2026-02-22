@@ -57,6 +57,50 @@ async function startServer() {
       createContext,
     })
   );
+
+  // Simple admin login (username/password from env)
+  app.post("/api/admin-login", async (req, res) => {
+    const { username, password } = req.body || {};
+    const adminUser = process.env.ADMIN_USERNAME || "admin";
+    const adminPass = process.env.ADMIN_PASSWORD || "admin123";
+
+    if (username !== adminUser || password !== adminPass) {
+      return res.status(401).json({ error: "Geçersiz kullanıcı adı veya şifre" });
+    }
+
+    try {
+      const { sdk } = await import("./sdk");
+      const { COOKIE_NAME, ONE_YEAR_MS } = await import("@shared/const");
+      const { getSessionCookieOptions } = await import("./cookies");
+      const db = await import("../db");
+
+      const openId = process.env.OWNER_OPEN_ID || "admin@localhost.dev";
+
+      // Upsert admin user in DB
+      await db.upsertUser({
+        openId,
+        name: "Admin",
+        email: openId,
+        role: "admin",
+        lastSignedIn: new Date(),
+      });
+
+      // Create session token
+      const sessionToken = await sdk.createSessionToken(openId, {
+        name: "Admin",
+        expiresInMs: ONE_YEAR_MS,
+      });
+
+      const cookieOptions = getSessionCookieOptions(req);
+      res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
+
+      return res.json({ success: true });
+    } catch (error) {
+      console.error("[Admin Login] Error:", error);
+      return res.status(500).json({ error: "Giriş işlemi başarısız" });
+    }
+  });
+
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);

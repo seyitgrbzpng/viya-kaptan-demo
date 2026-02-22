@@ -26,6 +26,11 @@ export default function Header({ settings }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
+            <img
+              src="https://res.cloudinary.com/diwyqzocs/image/upload/v1771719378/viya-kaptan/media/viya-kaptan-logo.jpg"
+              alt="Viya Kaptan Logo"
+              className="h-10 w-10 rounded-full object-cover"
+            />
             <span className="text-2xl font-bold text-primary font-['Pacifico']">
               {settings?.site_title || "Viya Kaptan"}
             </span>
@@ -69,7 +74,7 @@ export default function Header({ settings }: HeaderProps) {
                 <i className="ri-youtube-line text-xl"></i>
               </a>
             )}
-            <Link href="/admin">
+            <Link href="/login">
               <button className="px-4 py-2 bg-primary text-white text-sm rounded-full hover:bg-primary/90 transition-colors flex items-center gap-1">
                 <i className="ri-admin-line"></i>
                 Yönetici Girişi
@@ -103,7 +108,7 @@ export default function Header({ settings }: HeaderProps) {
                   {item.label}
                 </Link>
               ))}
-              <Link href="/admin" onClick={() => setIsMenuOpen(false)}>
+              <Link href="/login" onClick={() => setIsMenuOpen(false)}>
                 <span className="text-sm font-medium text-primary flex items-center gap-1">
                   <i className="ri-admin-line"></i>
                   Yönetici Girişi

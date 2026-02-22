@@ -1,4 +1,6 @@
 import AdminLayout from "@/components/AdminLayout";
+import ImageUploader from "@/components/ImageUploader";
+import RichTextEditor from "@/components/RichTextEditor";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -38,7 +40,7 @@ export default function AdminRoutes() {
 
   const utils = trpc.useUtils();
   const { data: routes, isLoading } = trpc.caravanRoutes.list.useQuery();
-  
+
   const createMutation = trpc.caravanRoutes.create.useMutation({
     onSuccess: () => {
       utils.caravanRoutes.list.invalidate();
@@ -95,7 +97,7 @@ export default function AdminRoutes() {
     const locations = Array.isArray(route.locations) ? route.locations as string[] : [];
     const highlights = Array.isArray(route.highlights) ? route.highlights as string[] : [];
     const tips = Array.isArray(route.tips) ? route.tips as string[] : [];
-    
+
     setFormData({
       name: route.name,
       slug: route.slug,
@@ -181,8 +183,8 @@ export default function AdminRoutes() {
                       id="name"
                       value={formData.name}
                       onChange={(e) => {
-                        setFormData({ 
-                          ...formData, 
+                        setFormData({
+                          ...formData,
                           name: e.target.value,
                           slug: editingId ? formData.slug : generateSlug(e.target.value)
                         });
@@ -251,27 +253,20 @@ export default function AdminRoutes() {
                   />
                 </div>
 
-                <div>
-                  <Label htmlFor="content">Detaylı İçerik (HTML)</Label>
-                  <Textarea
-                    id="content"
-                    value={formData.content}
-                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                    placeholder="Rota detayları (HTML destekler)..."
-                    rows={8}
-                    className="font-mono text-sm"
-                  />
-                </div>
+                <RichTextEditor
+                  label="Detaylı İçerik Editörü"
+                  id="content"
+                  value={formData.content || ""}
+                  onChange={(val) => setFormData({ ...formData, content: val })}
+                  placeholder="Rota hakkında detaylı bilgi..."
+                />
 
-                <div>
-                  <Label htmlFor="featuredImage">Öne Çıkan Görsel URL</Label>
-                  <Input
-                    id="featuredImage"
-                    value={formData.featuredImage}
-                    onChange={(e) => setFormData({ ...formData, featuredImage: e.target.value })}
-                    placeholder="https://..."
-                  />
-                </div>
+                <ImageUploader
+                  label="Öne Çıkan Görsel"
+                  id="featuredImage"
+                  value={formData.featuredImage}
+                  onChange={(url) => setFormData({ ...formData, featuredImage: url })}
+                />
 
                 <div>
                   <Label htmlFor="locations">Konumlar (virgülle ayırın)</Label>
@@ -371,7 +366,7 @@ export default function AdminRoutes() {
                   <div key={route.id} className="flex items-center justify-between py-4">
                     <div className="flex items-center gap-4">
                       {route.featuredImage && (
-                        <div 
+                        <div
                           className="w-20 h-14 bg-cover bg-center rounded-lg"
                           style={{ backgroundImage: `url(${route.featuredImage})` }}
                         />
@@ -400,11 +395,10 @@ export default function AdminRoutes() {
                           <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Taslak</span>
                         )}
                         {route.difficulty && (
-                          <span className={`text-xs px-2 py-1 rounded ${
-                            route.difficulty === 'easy' ? 'bg-green-100 text-green-700' :
+                          <span className={`text-xs px-2 py-1 rounded ${route.difficulty === 'easy' ? 'bg-green-100 text-green-700' :
                             route.difficulty === 'hard' ? 'bg-red-100 text-red-700' :
-                            'bg-yellow-100 text-yellow-700'
-                          }`}>
+                              'bg-yellow-100 text-yellow-700'
+                            }`}>
                             {difficultyLabels[route.difficulty]}
                           </span>
                         )}
@@ -414,9 +408,9 @@ export default function AdminRoutes() {
                       <Button variant="ghost" size="sm" onClick={() => handleEdit(route)}>
                         <Pencil className="h-4 w-4" />
                       </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
+                      <Button
+                        variant="ghost"
+                        size="sm"
                         className="text-red-500 hover:text-red-600"
                         onClick={() => {
                           if (confirm("Bu rotayı silmek istediğinize emin misiniz?")) {

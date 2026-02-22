@@ -1,4 +1,5 @@
 import AdminLayout from "@/components/AdminLayout";
+import ImageUploader from "@/components/ImageUploader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -28,7 +29,7 @@ export default function AdminHero() {
 
   const utils = trpc.useUtils();
   const { data: heroSections, isLoading } = trpc.heroSections.list.useQuery();
-  
+
   const createMutation = trpc.heroSections.create.useMutation({
     onSuccess: () => {
       utils.heroSections.list.invalidate();
@@ -137,15 +138,12 @@ export default function AdminHero() {
                     rows={2}
                   />
                 </div>
-                <div>
-                  <Label htmlFor="backgroundImage">Arka Plan Görsel URL</Label>
-                  <Input
-                    id="backgroundImage"
-                    value={formData.backgroundImage}
-                    onChange={(e) => setFormData({ ...formData, backgroundImage: e.target.value })}
-                    placeholder="https://..."
-                  />
-                </div>
+                <ImageUploader
+                  label="Arka Plan Görsel"
+                  id="backgroundImage"
+                  value={formData.backgroundImage}
+                  onChange={(url) => setFormData({ ...formData, backgroundImage: url })}
+                />
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="primaryButtonText">Birincil Buton Metni</Label>
@@ -233,7 +231,7 @@ export default function AdminHero() {
                   <div key={hero.id} className="border rounded-lg overflow-hidden">
                     <div className="flex">
                       {hero.backgroundImage && (
-                        <div 
+                        <div
                           className="w-48 h-32 bg-cover bg-center flex-shrink-0"
                           style={{ backgroundImage: `url(${hero.backgroundImage})` }}
                         />
@@ -256,9 +254,9 @@ export default function AdminHero() {
                           <Button variant="ghost" size="sm" onClick={() => handleEdit(hero)}>
                             <Pencil className="h-4 w-4" />
                           </Button>
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
+                          <Button
+                            variant="ghost"
+                            size="sm"
                             className="text-red-500 hover:text-red-600"
                             onClick={() => {
                               if (confirm("Bu hero bölümünü silmek istediğinize emin misiniz?")) {

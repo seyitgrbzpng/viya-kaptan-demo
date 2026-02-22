@@ -1,4 +1,6 @@
 import AdminLayout from "@/components/AdminLayout";
+import ImageUploader from "@/components/ImageUploader";
+import RichTextEditor from "@/components/RichTextEditor";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -34,7 +36,7 @@ export default function AdminPosts() {
   const utils = trpc.useUtils();
   const { data: posts, isLoading } = trpc.posts.list.useQuery();
   const { data: categories } = trpc.categories.list.useQuery({ activeOnly: true });
-  
+
   const createMutation = trpc.posts.create.useMutation({
     onSuccess: () => {
       utils.posts.list.invalidate();
@@ -155,8 +157,8 @@ export default function AdminPosts() {
                       id="title"
                       value={formData.title}
                       onChange={(e) => {
-                        setFormData({ 
-                          ...formData, 
+                        setFormData({
+                          ...formData,
                           title: e.target.value,
                           slug: editingId ? formData.slug : generateSlug(e.target.value)
                         });
@@ -205,27 +207,20 @@ export default function AdminPosts() {
                   />
                 </div>
 
-                <div>
-                  <Label htmlFor="content">İçerik (HTML)</Label>
-                  <Textarea
-                    id="content"
-                    value={formData.content}
-                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                    placeholder="Yazı içeriği (HTML destekler)..."
-                    rows={10}
-                    className="font-mono text-sm"
-                  />
-                </div>
+                <RichTextEditor
+                  label="İçerik Editörü"
+                  id="content"
+                  value={formData.content || ""}
+                  onChange={(val) => setFormData({ ...formData, content: val })}
+                  placeholder="Yazı içeriği..."
+                />
 
-                <div>
-                  <Label htmlFor="featuredImage">Öne Çıkan Görsel URL</Label>
-                  <Input
-                    id="featuredImage"
-                    value={formData.featuredImage}
-                    onChange={(e) => setFormData({ ...formData, featuredImage: e.target.value })}
-                    placeholder="https://..."
-                  />
-                </div>
+                <ImageUploader
+                  label="Öne Çıkan Görsel"
+                  id="featuredImage"
+                  value={formData.featuredImage}
+                  onChange={(url) => setFormData({ ...formData, featuredImage: url })}
+                />
 
                 <div className="grid grid-cols-3 gap-4">
                   <div>
@@ -325,7 +320,7 @@ export default function AdminPosts() {
                   <div key={post.id} className="flex items-center justify-between py-4">
                     <div className="flex items-center gap-4">
                       {post.featuredImage && (
-                        <div 
+                        <div
                           className="w-16 h-12 bg-cover bg-center rounded-lg"
                           style={{ backgroundImage: `url(${post.featuredImage})` }}
                         />
@@ -358,9 +353,9 @@ export default function AdminPosts() {
                       <Button variant="ghost" size="sm" onClick={() => handleEdit(post)}>
                         <Pencil className="h-4 w-4" />
                       </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
+                      <Button
+                        variant="ghost"
+                        size="sm"
                         className="text-red-500 hover:text-red-600"
                         onClick={() => {
                           if (confirm("Bu yazıyı silmek istediğinize emin misiniz?")) {

@@ -1,4 +1,5 @@
 import AdminLayout from "@/components/AdminLayout";
+import ImageUploader from "@/components/ImageUploader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -33,7 +34,7 @@ export default function AdminTeam() {
 
   const utils = trpc.useUtils();
   const { data: members, isLoading } = trpc.teamMembers.list.useQuery();
-  
+
   const createMutation = trpc.teamMembers.create.useMutation({
     onSuccess: () => {
       utils.teamMembers.list.invalidate();
@@ -111,7 +112,7 @@ export default function AdminTeam() {
     if (socialLinksInput.twitter) socialLinks.twitter = socialLinksInput.twitter;
     if (socialLinksInput.youtube) socialLinks.youtube = socialLinksInput.youtube;
     if (socialLinksInput.linkedin) socialLinks.linkedin = socialLinksInput.linkedin;
-    
+
     const data = { ...formData, socialLinks };
     if (editingId) {
       updateMutation.mutate({ id: editingId, ...data });
@@ -169,15 +170,12 @@ export default function AdminTeam() {
                     rows={3}
                   />
                 </div>
-                <div>
-                  <Label htmlFor="image">Fotoğraf URL</Label>
-                  <Input
-                    id="image"
-                    value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                    placeholder="https://..."
-                  />
-                </div>
+                <ImageUploader
+                  label="Fotoğraf"
+                  id="image"
+                  value={formData.image}
+                  onChange={(url) => setFormData({ ...formData, image: url })}
+                />
                 <div>
                   <Label htmlFor="email">E-posta</Label>
                   <Input
@@ -260,9 +258,9 @@ export default function AdminTeam() {
                       <Button variant="ghost" size="sm" onClick={() => handleEdit(member)}>
                         <Pencil className="h-4 w-4" />
                       </Button>
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
+                      <Button
+                        variant="ghost"
+                        size="sm"
                         className="text-red-500 hover:text-red-600"
                         onClick={() => {
                           if (confirm("Bu üyeyi silmek istediğinize emin misiniz?")) {
@@ -275,7 +273,7 @@ export default function AdminTeam() {
                     </div>
                     <div className="flex items-center gap-4">
                       {member.image ? (
-                        <div 
+                        <div
                           className="w-16 h-16 rounded-full bg-cover bg-center flex-shrink-0"
                           style={{ backgroundImage: `url(${member.image})` }}
                         />

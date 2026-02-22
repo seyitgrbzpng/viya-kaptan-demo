@@ -9,6 +9,7 @@ import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import CaravanRoutes from "./pages/CaravanRoutes";
 import CaravanRouteDetail from "./pages/CaravanRouteDetail";
+import Login from "./pages/Login";
 
 // Admin Pages
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -30,7 +31,8 @@ function Router() {
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/karavan" component={CaravanRoutes} />
       <Route path="/karavan/:slug" component={CaravanRouteDetail} />
-      
+      <Route path="/login" component={Login} />
+
       {/* Admin Routes */}
       <Route path="/admin" component={AdminDashboard} />
       <Route path="/admin/categories" component={AdminCategories} />
@@ -41,7 +43,7 @@ function Router() {
       <Route path="/admin/team" component={AdminTeam} />
       <Route path="/admin/settings" component={AdminSettings} />
       <Route path="/admin/media" component={AdminMedia} />
-      
+
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

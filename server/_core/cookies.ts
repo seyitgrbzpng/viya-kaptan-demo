@@ -55,12 +55,12 @@ export function getSessionCookieOptions(
   //       : undefined;
 
   const domain = getCookieDomainFromHost(req.hostname);
-
+  const secure = isSecureRequest(req);
   return {
     domain,
     httpOnly: true,
     path: "/",
-    sameSite: "none",
-    secure: isSecureRequest(req),
+    sameSite: secure ? "none" as const : "lax" as const,
+    secure,
   };
 }
