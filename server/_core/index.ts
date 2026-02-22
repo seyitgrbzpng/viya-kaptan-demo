@@ -33,10 +33,11 @@ async function startServer() {
   // Trust proxy headers (needed for secure cookies behind Render/Cloudflare etc.)
   app.set("trust proxy", 1);
 
-  // CORS (configure allowed origins via env: CORS_ORIGINS="https://domain.com,https://www.domain.com")
-  const corsOrigins = (process.env.CORS_ORIGINS || "").split(",").map(s => s.trim()).filter(Boolean);
+  // CORS (allow any origin dynamically to support separate frontend hosting on Hostinger)
   app.use(cors({
-    origin: corsOrigins.length ? corsOrigins : true,
+    origin: function (origin, callback) {
+      callback(null, origin || true);
+    },
     credentials: true,
   }));
 
